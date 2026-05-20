@@ -1,6 +1,7 @@
 # comicinfo-gen
 
 スキャンした書籍カバー画像から `ComicInfo.xml` を自動生成するスクリプト。
+Claude Opus 4.7 が書きました。
 
 カバー画像のバーコード（または OCR）からISBNを取得し、楽天Books APIとOpenBD APIを使って書誌データを引き、[ComicInfo.xml](https://github.com/anansi-project/comicinfo) を出力します。
 
