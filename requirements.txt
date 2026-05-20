@@ -1,0 +1,4 @@
+pyzbar
+Pillow
+requests
+pytesseract
