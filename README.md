@@ -1,4 +1,4 @@
-# comicinfo-gen
+# cover-to-comicinfo (comicinfo-gen)
 
 スキャンした書籍カバー画像から `ComicInfo.xml` を自動生成するスクリプト。
 Claude Opus 4.7 が書きました。
