@@ -1,0 +1,14 @@
+# Claude Code
+.claude/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# エディタ / OS
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
