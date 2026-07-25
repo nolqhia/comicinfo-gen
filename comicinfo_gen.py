@@ -308,32 +308,36 @@ def build_comicinfo(isbn: str | None, rakuten: dict | None, openbd: dict | None)
         number = extract_number_from_openbd(openbd)
 
     def add(tag: str, value: str):
+        """値があれば設定、なければ空タグで出力。"""
+        ET.SubElement(root, tag).text = value if value else ""
+
+    def add_if(tag: str, value: str):
+        """値がある時だけタグを追加（空ならタグ自体を出さない）。"""
         if value:
             ET.SubElement(root, tag).text = value
 
+    # 空タグ固定出力（手修正用の枠を確保）
     add("Series", title)
     add("Title", title)
-    ET.SubElement(root, "Genre").text = ""
-    add("Summary", summary)
+    add("Genre", "")
+    add_if("Summary", summary)  # ComicTaggerで入れるので空タグ不要
     add("Publisher", publisher)
     add("Imprint", imprint)
-    if day:
-        add("Day", day)
-    if month:
-        add("Month", month)
-    if year:
-        add("Year", year)
+    add("Number", number)
+    add("Writer", writer)
+    add("Year", year)
+    add("Month", month)
+
+    # 条件付き出力（値があるときだけ）
+    add_if("Day", day)
+    add_if("CoverArtist", cover_artist)
+
+    # 固定値
     add("LanguageISO", "ja")
     add("Manga", "YesAndRightToLeft")
     add("AgeRating", "Everyone")
-    add("Writer", writer)
-    if cover_artist:
-        add("CoverArtist", cover_artist)
-    if number:
-        add("Number", number)
     add("BlackAndWhite", "Yes")
-    if isbn:
-        add("GTIN", isbn)
+    add_if("GTIN", isbn)
 
     return root
 
